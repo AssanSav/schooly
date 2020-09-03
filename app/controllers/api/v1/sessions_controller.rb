@@ -26,8 +26,7 @@ class SessionsController < ApplicationController
       if !!session[:user_id] && current_user
         render json: {
         logged_in: true,
-        user: UserSerializer.new(current_user),
-        interests: current_user.interests
+        user: UserSerializer.new(current_user)
       }
       else
           render json: {
@@ -37,7 +36,7 @@ class SessionsController < ApplicationController
       end
     end
 
-    def destroy 
+    def logout
       user = User.find(session[:user_id])
       if user && session.clear
         render json: {
@@ -47,5 +46,5 @@ class SessionsController < ApplicationController
         }
       end
     end
-    
+
 end
