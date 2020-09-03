@@ -42,9 +42,9 @@ ActiveRecord::Schema.define(version: 2020_09_03_025513) do
     t.string "email"
     t.string "major"
     t.string "department"
-    t.boolean "admin"
-    t.boolean "teacher"
-    t.boolean "student"
+    t.boolean "admin", default: false
+    t.boolean "teacher", default: false
+    t.boolean "student", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "image"

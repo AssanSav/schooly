@@ -6,9 +6,9 @@ class CreateUsers < ActiveRecord::Migration[6.0]
       t.string :email
       t.string :major
       t.string :department
-      t.boolean :admin
-      t.boolean :teacher
-      t.boolean :student
+      t.boolean :admin, :default => false
+      t.boolean :teacher, :default => false
+      t.boolean :student, :default => false
 
       t.timestamps
     end
