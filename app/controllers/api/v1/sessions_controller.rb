@@ -37,4 +37,15 @@ class SessionsController < ApplicationController
       end
     end
 
+    def destroy 
+      user = User.find(session[:user_id])
+      if user && session.clear
+        render json: {
+          status: 200,
+          logged_out: true,
+          user: user
+        }
+      end
+    end
+    
 end
