@@ -1,2 +1,2 @@
-Rails.application.config.session_store :cookie_store, key: '_schooly-to-the-next"
+Rails.application.config.session_store :cookie_store, key: "_schooly"
 
