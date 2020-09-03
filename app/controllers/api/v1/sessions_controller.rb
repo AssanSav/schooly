@@ -22,5 +22,19 @@ class SessionsController < ApplicationController
       end
     end
 
-    
+    def is_logged_in?
+      if !!session[:user_id] && current_user
+        render json: {
+        logged_in: true,
+        user: UserSerializer.new(current_user),
+        interests: current_user.interests
+      }
+      else
+          render json: {
+            logged_in: false,
+            message: "No Such User!"
+          }
+      end
+    end
+
 end
