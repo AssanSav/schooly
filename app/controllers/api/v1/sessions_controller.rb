@@ -1,13 +1,13 @@
 class SessionsController < ApplicationController
 
     def login 
-      user = User.find_by_email(params[:email].upcase)
+      user = Student.find_by_email(params[:email].upcase) || Teacher.find_by_email(params[:email].upcase) 
       if user && user.authenticate(params[:password])
         session[:user_id] = user.id
         render json: {
           status: 200,
           logged_in: true,
-          user: UserSerializer.new(user)
+          user: TeacherSerializer.new(user) || StudentSerializer.new(user)
         }
       elsif user 
         render json: {
@@ -26,7 +26,7 @@ class SessionsController < ApplicationController
       if !!session[:user_id] && current_user
         render json: {
         logged_in: true,
-        user: UserSerializer.new(current_user)
+        user: TeacherSerializer.new(current_user) || StudentSerializer.new(current_user) 
       }
       else
           render json: {
@@ -37,7 +37,7 @@ class SessionsController < ApplicationController
     end
 
     def destroy
-      user = User.find(session[:user_id])
+      user = Teacher.find(session[:user_id]) || Student.find(session[:user_id]) 
       if user && session.clear
         render json: {
           status: 200,
