@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_03_181549) do
+ActiveRecord::Schema.define(version: 2020_09_04_161823) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,20 +36,34 @@ ActiveRecord::Schema.define(version: 2020_09_03_181549) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "students", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
     t.string "email"
-    t.string "major"
-    t.string "department"
-    t.boolean "admin", default: false
-    t.boolean "teacher", default: false
-    t.boolean "student", default: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
     t.string "image"
     t.string "password_digest"
-    t.boolean "remember_me", default: false
+    t.string "major"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "teacher_students", force: :cascade do |t|
+    t.integer "teacher_id"
+    t.integer "student_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "teachers", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "email"
+    t.string "image"
+    t.string "password_digest"
+    t.string "department"
+    t.boolean "admin", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

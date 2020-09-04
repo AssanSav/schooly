@@ -1,6 +1,6 @@
 class Api::V1::UsersController < ApplicationController
   def index 
-    users = User.all
+    users = User.all.where(deleted: true)
     if users.length > 0
       render json: {
         status: 200,
