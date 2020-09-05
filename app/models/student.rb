@@ -10,7 +10,7 @@ class Student < ApplicationRecord
     private
 
     def capitalize
-        capitalize_attr = ["first_name", "last_name", "major", "department" ]
+        capitalize_attr = ["first_name", "last_name", "major"]
         self.attributes.each do |attr, val| 
             if attr == "email"
                 self.email = self.email.upcase

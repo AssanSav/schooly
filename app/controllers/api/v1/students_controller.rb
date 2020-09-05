@@ -14,6 +14,7 @@ class Api::V1::StudentsController < ApplicationController
       end
     end
   
+
     def create 
       student = Student.new(student_params)
       if student.save
@@ -37,9 +38,10 @@ class Api::V1::StudentsController < ApplicationController
       end
     end
   
+    
     private 
     def student_params
-      params.require(:student).permit(:first_name, :last_name, :email, :image, :imajor, :password, :password_confirmation)
+      params.require(:student).permit(:first_name, :last_name, :email, :image, :major, :password, :password_confirmation)
     end
   
   end
